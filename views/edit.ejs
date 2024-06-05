@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=0, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-full bg-zinc-900 p-10">
+        <a class="text-blue-500" href="/read">See Tasks</a>
+        <h1 class="text-3xl mt-10 tracking-tighter mb-3">Update Task</h1>
+        <form action="/update/<%= task._id %>" method="post">
+            <input class="px-5 py-2 bg-transparent border-2 border-zinc-800 rounded outline-none" required minlength="2" value="<%= task.title %>" name="title" type="text" placeholder="Title">
+            <input class="px-5 py-2 bg-transparent border-2 border-zinc-800 rounded outline-none" required minlength="5" value="<%= task.description %>" name="description" type="text" placeholder="Description">
+            <input class="px-5 py-2 bg-transparent border-2 border-zinc-800 rounded outline-none" required minlength="2" value="<%= task.tag %>" name="tag" type="text" placeholder="Tag">
+            <% if(task.title.length > 0 || task.description.lenght > 2 || task.tag === "Yes" || task.tag === "yes" || task.tag === "No" || task.tag === "no") { %>
+                <input class="px-5 py-2 bg-blue-500 rounded-lg ml-3" type="submit" value="Update Task">
+            <% } else { %>
+                <input class="px-5 py-2 bg-blue-500 rounded-lg ml-3" disabled type="submit" value="Update Task">
+            <% } %>
+        </form>
+    </div>
+</body>
+</html>

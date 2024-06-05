@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=0, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-full h-full bg-zinc-900 p-10 text-white">
+        <a class="text-blue-500" href="/">Back</a>
+        <% if(alltasks.length> 0) {%>
+            <h1 class="text-3xl mt-10 tracking-tighter mb-3">Your Tasks</h1>
+            <div class="tasks flex gap-3 flex-wrap">
+                <% alltasks.forEach(function(task){ %>
+                    <div class="task w-52 p-4 bg-zinc-800 rounded-lg">
+                        <% if(task.tag === "Yes" || task.tag === "yes") { %>
+                            <div class="w-24 h-8 bg-emerald-500 text-center rounded-lg relative right-3 bottom-4">Complete</div>
+                        <% } %>
+                        <div class="w-full h-20 text-center rounded-lg bg-zinc-800">
+                            <%=task.title%>
+                        </div>
+                        <div class="w-full h-40 text-center rounded-lg bg-zinc-700 mt-2">
+                            <%=task.description%>
+                        </div>
+                        <div class="flex gap-3 mt-5">
+                            <% if(task.tag === "No" || task.tag === "no") { %>
+                                <a class="text-zinc-400"  href="/edit/<%= task._id %>">Edit</a>
+                            <% } %>
+                            <a class="text-red-500" href="/delete/<%= task._id %>">Delete</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                <% } else { %>
+                    <h3 class="text-center text-3xl">No Tasks yet</h3>
+                <% } %>
+            </div>
+    </div>
+</body>
+
+</html>
